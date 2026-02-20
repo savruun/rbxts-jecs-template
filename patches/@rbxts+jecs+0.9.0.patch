@@ -1,0 +1,23 @@
+diff --git a/node_modules/@rbxts/jecs/jecs.d.ts b/node_modules/@rbxts/jecs/jecs.d.ts
+index 0b4a932..82a783c 100644
+--- a/node_modules/@rbxts/jecs/jecs.d.ts
++++ b/node_modules/@rbxts/jecs/jecs.d.ts
+@@ -360,3 +360,5 @@ export type EntityRecord<T extends Id[]> = {
+ };
+ 
+ export function record<T extends Id[] = []>(world: World, entity: Entity): EntityRecord<T>;
++
++export function new_low_id(world: World): Entity;
+\ No newline at end of file
+diff --git a/node_modules/@rbxts/jecs/jecs.luau b/node_modules/@rbxts/jecs/jecs.luau
+index 9c86c1c..44d49ff 100644
+--- a/node_modules/@rbxts/jecs/jecs.luau
++++ b/node_modules/@rbxts/jecs/jecs.luau
+@@ -3280,6 +3280,7 @@ return {
+ 		new = world_new
+ 	},
+ 	component = (ECS_COMPONENT :: any) :: <T>() -> Entity<T>,
++  new_low_id = function(world: world) return world:entity() end,
+ 	tag = (ECS_TAG :: any) :: <T>() -> Entity<T>,
+ 	meta = (ECS_META :: any) :: <T, a>(id: Entity<T>, id: Id<a>, value: a?) -> Entity<T>,
+ 	is_tag = (ecs_is_tag :: any) :: <T>(World, Id<T>) -> boolean,

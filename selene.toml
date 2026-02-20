@@ -1,0 +1,2 @@
+exclude = ["out/**/*", "include/**/*", "wally_modules/**/*"]
+std = "luau+roblox"

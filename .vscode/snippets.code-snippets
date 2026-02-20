@@ -1,0 +1,85 @@
+{
+  "Flamework Controller": {
+    "prefix": ["controller", "flameworkcontroller"],
+    "description": "Create a Flamework controller",
+    "body": [
+      "import { Controller, OnStart } from '@flamework/core'",
+      "",
+      "@Controller()",
+      "export class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g} implements OnStart {",
+      "\tpublic onStart() {",
+      "\t\t$0",
+      "\t}",
+      "}"
+    ]
+  },
+
+  "Flamework Service": {
+    "prefix": ["service", "flameworkservice"],
+    "description": "Create a Flamework service",
+    "body": [
+      "import { Service, OnStart } from '@flamework/core'",
+      "",
+      "@Service()",
+      "export class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g} implements OnStart {",
+      "\tpublic onStart() {",
+      "\t\t$0",
+      "\t}",
+      "}"
+    ]
+  },
+
+  "Flamework Component": {
+    "prefix": ["component", "flameworkcomponent"],
+    "description": "Create a Flamework component",
+    "body": [
+      "import { OnStart } from '@flamework/core'",
+      "import { Component, BaseComponent } from '@flamework/components'",
+      "",
+      "interface Attributes {}",
+      "",
+      "@Component()",
+      "export class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g} extends BaseComponent<Attributes> implements OnStart {",
+      "\tpublic onStart() {",
+      "\t\t$0",
+      "\t}",
+      "}"
+    ]
+  },
+
+  "React Component": {
+    "prefix": ["rcomponent", "reactcomponent", "tsx"],
+    "description": "Create a React TSX component.",
+    "body": [
+      "import React, { useEffect, useState } from '@rbxts/react'",
+      "",
+      "export default function ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}() {",
+      "\treturn (",
+      "\t\t<frame>",
+      "\t\t\t$0",
+      "\t\t</frame>",
+      "\t)",
+      "}"
+    ]
+  },
+
+  "Centurion Command": {
+    "prefix": ["command", "centurioncommand"],
+    "description": "Create a Centurion admin command",
+    "body": [
+      "import { Register, Command, CenturionType, CommandContext } from '@rbxts/centurion'",
+      "",
+      "@Register()",
+      "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Command {",
+      "\t@Command({",
+      "\t\tname: '${TM_FILENAME_BASE}',",
+      "\t\tdescription: '',",
+      "\t\targuments: []",
+      "\t})",
+      "\tpublic ${TM_FILENAME_BASE}(ctx: CommandContext) {",
+      "\t\t$0",
+      "\t}",
+      "}"
+    ]
+}
+}
