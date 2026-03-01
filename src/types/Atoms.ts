@@ -1,2 +1,2 @@
-import type { atoms } from '@shared/atoms';
+import type { atoms } from '@shared/react/atoms';
 export type Atoms = typeof atoms;

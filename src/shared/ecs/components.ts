@@ -3,22 +3,31 @@ import { world } from './world';
 
 import * as jecs from '@rbxts/jecs';
 import type { Character } from '@type/Character';
+import type { PersistentPlayerData } from '@type/PersistentPlayerData';
+import type { Collected } from '@type/Collected';
+import type { Trove } from '@rbxts/trove';
 
 export const ct = {
   /** Easing Flags */
-  Tween: jecs.new_low_id(world),
-  Spring: jecs.new_low_id(world),
+  Tween: world.entity(),
+  Spring: world.entity(),
 
   /** Ownership Flags */
-  Owner: jecs.new_low_id(world),
+  Owner: world.entity(),
 
   /** Player Flags */
-  Player: jecs.new_low_id(world),
-  Character: jecs.new_low_id(world),
-  
+  Player: world.entity(),
+  Character: world.entity(),
+  Client: world.entity(),
+
+  /** Tool Flags */
+  Tools: world.entity(),
+  Tool: world.entity(), // Used for Tool queries
+  Is_Equipped: world.entity(),
+
   /** Value Sanitization Flags */
-  Dirty: jecs.new_low_id(world),
-  Clean: jecs.new_low_id(world),
+  Dirty: world.entity(),
+  Clean: world.entity(),
 
   /** Utility Components */
   timer: world.component<number>(),
@@ -27,15 +36,19 @@ export const ct = {
   /** Player Components */
   player: world.component<Player>(),
   character: world.component<Character>(),
+  client_id: world.component<number>(), // For client custom ids
   humanoid: world.component<Humanoid>(),
+  persistent_data: world.component<PersistentPlayerData>(),
+  character_added_stream: world.component<Collected<[Character]>>(),
 
   /** Reference Components */
   ref: world.component<defined>(),
   instance: world.component<Instance>(),
-  
+
   /** Data Components */
   meta: world.component<Record<string, unknown>>(),
   health: world.component<{ max: number; current: number }>(),
+  cleanup: world.component<Trove>(),
 };
 
 for (const [name, component] of pairs(ct)) {

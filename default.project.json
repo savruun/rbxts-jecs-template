@@ -13,6 +13,9 @@
       "$className": "ServerStorage",
       "archive": {
         "$path": "out/archive"
+      },
+      "private": {
+        "$path": "out/private"
       }
     },
     "ReplicatedStorage": {
@@ -40,9 +43,6 @@
       },
       "client": {
         "$path": "out/client"
-      },
-      "types": {
-        "$path": "out/types"
       }
     },
     "StarterPlayer": {

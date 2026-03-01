@@ -1,5 +1,4 @@
-import type { world } from '@shared/world'
-import type { Atoms } from './Atoms'
-import type { CT } from './CT'
+import type { world } from '@shared/ecs/world';
+import type { CT } from './CT';
 
-export type SchedulerArgs = [{world: typeof world, ct: CT, atoms: Atoms}]
+export type SchedulerArgs = [{ world: typeof world; ct: CT }];

@@ -1,25 +1,18 @@
-import { Events } from '@client/network';
-import { collect } from '@util/collect';
-import type { Connectable } from '@type/Connectable';
-import { cast } from '@shared/util/cast';
 import { client_replicator } from '@client/replicator';
 import type { System } from '@type/System';
 
-const updates = collect<[() => void, buffer, unknown[][]]>(
-  cast<Connectable>(Events.sendUpdates),
-);
+import { routes } from '@shared/net/routes';
 
-const unreliables = collect<[() => void, buffer, unknown[][]]>(
-  cast<Connectable>(Events.sendUnreliables),
-);
-
-// System
-export const system: System = () => {
-  for (const [_, buf, variants] of updates) {
+const replecs_client: System = () => {
+  for (const [_, buf, variants] of routes.updates.query().client()) {
     client_replicator.apply_updates(buf, variants);
   }
 
-  for (const [_, buf, variants] of unreliables) {
+  for (const [_, buf, variants] of routes.unreliable_updates.query().client()) {
     client_replicator.apply_unreliable(buf, variants);
   }
+};
+
+export = {
+  system: replecs_client,
 };

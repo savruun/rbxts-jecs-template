@@ -63,6 +63,22 @@
     ]
   },
 
+  "JECS System": {
+    "prefix": ["system", "jecssystem"],
+    "description": "Create a JECS system.",
+    "body": [
+      "import type { System } from '@type/System';",
+      "",
+      "const ${TM_FILENAME_BASE/(.*)/${1:/snakecase}/g}: System = ({ world, ct }) => {",
+      "",
+      "};",
+      "",
+      "export = {",
+      "\tsystem: ${TM_FILENAME_BASE/(.*)/${1:/snakecase}/g}",
+      "};"
+    ]
+  },
+
   "Centurion Command": {
     "prefix": ["command", "centurioncommand"],
     "description": "Create a Centurion admin command",

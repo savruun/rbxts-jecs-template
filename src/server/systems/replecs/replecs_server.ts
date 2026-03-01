@@ -1,15 +1,16 @@
-import { Events } from '@server/network';
 import { server_replicator } from '@server/replicator';
-import { interval } from '@util/interval';
+import { routes } from '@shared/net/routes';
+import type { System } from '@type/System';
+import { interval } from '@shared/ecs/interval';
 
 const updates_interval = interval(1 / 20);
 const unreliables_interval = interval(1 / 30);
 
-export function system() {
+const replecs_server: System = () => {
   if (updates_interval()) {
     for (const [player, buf, variants] of server_replicator.collect_updates()) {
-      print(buf, variants);
-      Events.sendUpdates.fire(player, buf, variants);
+      print(player, buf, variants);
+      routes.updates.send(buf, variants as defined[][]).to(player);
     }
   }
 
@@ -19,7 +20,11 @@ export function system() {
       buf,
       variants,
     ] of server_replicator.collect_unreliable()) {
-      Events.sendUnreliables.fire(player, buf, variants);
+      routes.unreliable_updates.send(buf, variants as defined[][]).to(player);
     }
   }
-}
+};
+
+export = {
+  system: replecs_server,
+};

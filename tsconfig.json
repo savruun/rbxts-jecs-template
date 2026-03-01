@@ -27,20 +27,19 @@
     "plugins": [
       { "transform": "rbxts-transformer-flamework" },
       { "transform": "rbxts-transform-debug" },
-      // { "transform": "rbxts-transformer-jecs" }
+      //{ "transform": "rbxts-transformer-jecs" }
     ],
 
     "paths": {
       "@client/*": ["client/*"],
       "@server/*": ["server/*"],
       "@shared/*": ["shared/*"],
+      "@private/*": ["private/*"],
       "@type/*":  ["types/*"],
       "@util/*": ["shared/util/*"],
-      "@ref/*": ["shared/refs/*"],
-      "@react/*": ["shared/react/*"]
+      "@react/*": ["shared/react/*"],
     },
   },
 
-  "include": ["src"],
-  "exclude": ["commitlint.config.ts"]
+  "include": ["src"]
 }

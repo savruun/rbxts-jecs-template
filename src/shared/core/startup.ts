@@ -1,18 +1,16 @@
 import jabby from '@rbxts/jabby';
 import type { System } from '@rbxts/planck';
 import { ContextActionService, RunService } from '@rbxts/services';
-import { scheduler } from './scheduler';
+import { scheduler } from './/scheduler';
 
-import { world } from './world';
+import { world } from '@shared/ecs/world';
 
 import type { CT } from '@type/CT';
 import type { Atoms } from '@type/Atoms';
 
 let is_widget_open = false;
 
-export function startup(
-  systems: System<[{ world: typeof world; ct: CT; atoms: Atoms }]>[],
-) {
+export function startup(systems: System<[{ world: typeof world; ct: CT }]>[]) {
   if (systems.size() !== 0) {
     scheduler.addSystems(systems);
   }
